@@ -1,0 +1,1 @@
+Mini project which compares the computational complexity of the operations such as adding on first/last/random element, removing first/last/random element and searching element in data structures such as ArrayList, one-way list and two-way list.
