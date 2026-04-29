@@ -1,45 +1,41 @@
-# Struktury Danych – Miniprojekty
+# Data Structures — Performance Analysis
 
-Repozytorium zawiera implementacje struktur danych wykonane w ramach przedmiotu **Struktury Danych** na studiach inżynierskich. Każdy miniprojekt to osobna implementacja wybranych struktur wraz z pomiarem złożoności czasowej podstawowych operacji.
+A university project implementing three fundamental data structures from scratch
+in C++ (no STL), with a benchmarking system that measures and compares
+operation times across different input sizes.
 
----
+Built together with [Damian](https://github.com/damian5066) as part of the
+Data Structures course at Wrocław University of Technology.
 
-## Miniprojekt 1 – Lista
+## Data structures implemented
 
-Implementacja i porównanie trzech struktur danych:
+**Dynamic Array (ArrayList)**
+- doubles capacity when full
+- supports add/remove at front, back, and arbitrary position
 
-- **Tablica dynamiczna (ArrayList)** – przy braku miejsca rozmiar jest podwajany, przy nadmiarze zmniejszany
-- **Lista jednokierunkowa (SinglyList)** – węzły połączone jednym wskaźnikiem `next`, z dostępem przez `head` i `tail`
-- **Lista dwukierunkowa (DoublyList)** – węzły połączone wskaźnikami `next` i `prev`, umożliwiające poruszanie się w obu kierunkach
+**Singly Linked List**
+- head and tail pointers for O(1) add at back
+- supports add/remove at front, back, and arbitrary position
 
-### Zbadane operacje
-- Dodawanie elementu na początku, końcu i losowej pozycji
-- Usuwanie elementu z początku, końca i losowej pozycji
-- Wyszukiwanie elementu
+**Doubly Linked List**
+- bidirectional traversal with next/prev pointers
+- supports add/remove at front, back, and arbitrary position
 
-### Uruchomienie
+## Benchmark system
+
+Each operation is measured 20 times per structure per input size
+and averaged to reduce noise. Input sizes tested:
+5,000 / 8,000 / 10,000 / 16,000 / 20,000 / 40,000 / 60,000 / 100,000 elements.
+
+Results are saved to `wyniki.csv` for further analysis.
+
+## How to run
+```bash
+g++ -O2 -o main main.cpp ArrayList.cpp SinglyList.cpp DoublyList.cpp
+./main
 ```
-g++ -std=c++17 -o program main.cpp
-./program
-```
 
-Program uruchamia dwupoziomowe menu – najpierw wybór struktury, potem dostępne operacje. Opcja **Benchmark** mierzy czasy wszystkich operacji dla rozmiarów od 5000 do 100000 elementów i zapisuje wyniki do pliku `wyniki.csv`.
-
----
-
-## Miniprojekt 2 – *(wkrótce)*
-
----
-
-## Miniprojekt 3 – *(wkrótce)*
-
----
-
-## Ogólne założenia projektowe
-
-- Wszystkie struktury zaimplementowane samodzielnie, bez użycia STL
-- Dane alokowane dynamicznie, tablice relokowane przy dodawaniu i usuwaniu
-- Podstawowy element: 4-bajtowa liczba całkowita (`int`)
-- Pomiary wykonywane wielokrotnie (20 powtórzeń) i uśredniane
-- Wszystkie struktury porównywane na identycznych danych (to samo ziarno `srand`)
-- Język: C++
+## Operations measured
+- Add at front / back / random position
+- Remove from front / back / random position
+- Search by value
